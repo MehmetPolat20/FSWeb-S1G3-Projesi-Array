@@ -40,10 +40,11 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
-  /*kod buraya*/
+function kopyala(kopyalananDizi) {
+  const yeniDizi = [...kopyalananDizi];
+  return yeniDizi;
 }
-
+console.log("kopyala", kopyala(orijinalTatlar))
 
 /* Görev 2:
 Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları kabul etmelidir:
@@ -56,9 +57,14 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 */
 
 
-function dizi25Cesitmi(/*kod buraya*/){
-  /*kod buraya*/
+function dizi25Cesitmi(dizi) {
+  if (dizi.length === 25) {
+    return true;
+  } else {
+    return false;
+  }
 }
+console.log("dizi25mi", dizi25Cesitmi(orijinalTatlar))
 
 
 /* Görev 3:
@@ -74,10 +80,16 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
-  /*kod buraya*/
-}
+function cesitEkle(tatlarDizisi, yeniCesit) {
+  tatlarDizisi.unshift(yeniCesit);
+  return tatlarDizisi;
 
+  // alternatif çözüm
+  //const yeniDizi = [yeniCesit, ...tatlarDizisi];
+  //return yeniDizi;
+
+}
+console.log("çesit ekle", cesitEkle(orijinalTatlar, "Kakule"));
 
 /* Cörev 4:
 
@@ -92,9 +104,13 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
-  /*kod buraya*/
+function sonCesitiKaldir(tatlarDizisi) {
+  tatlarDizisi.pop();
+  return tatlarDizisi;
 }
+
+console.log("sonu kaldır", sonCesitiKaldir(orijinalTatlar))
+
 
 
 /* Görev 5:
@@ -108,10 +124,11 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
-  /*kod buraya*/
+function indekstekiCesitiGetir(tatlarDizisi, sira) {
+  return tatlarDizisi[sira];
 }
 
+console.log("indekstekiÇeşit", indekstekiCesitiGetir(orijinalTatlar, 3))
 
 /* Görev 6:
 
@@ -128,9 +145,15 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreCesitCikar(tatlarDizisi, cesitAdi) {
+  const sirasi = tatlarDizisi.indexOf(cesitAdi);
+
+  console.log("sirasi", sirasi)
+
+  tatlarDizisi.splice(sirasi, 1);
+  return tatlarDizisi;
 }
+console.log("ismeGore", ismeGoreCesitCikar(orijinalTatlar, "Tarçın"));
 
 
 /* Görev 7:
@@ -154,10 +177,17 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
 */
 
 
-function ismeGoreFiltrele(/*kod buraya*/){
-  /*kod buraya*/
-}
+function ismeGoreFiltrele(tatlarDizisi, alerjen) {
+  const filtrelenmisTatlar = [];
+  for (let i = 0; i < tatlarDizisi.length; i++) {
+    if (tatlarDizisi[i].includes(alerjen)) {
+      filtrelenmisTatlar.push(tatlarDizisi[i]);
+    }
 
+  }
+  return filtrelenmisTatlar;
+}
+console.log("isme göre filtre", ismeGoreFiltrele(orijinalTatlar, "Çikolata"))
 
 
 /* ALIŞTIRMA */
@@ -172,10 +202,15 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
-}
+function ortalamaKelimeSayisi(tatlarDizisi) {
+  let toplam = 0;
+  for (let i = 0; i < tatlarDizisi.length; i++) {
+    toplam = toplam + tatlarDizisi[i].split(" ").length;
 
+  }
+  return toplam / tatlarDizisi.length;
+}
+console.log("ortalamaKelime", ortalamaKelimeSayisi(orijinalTatlar));
 
 /* ALIŞTIRMA 2:
 Firma mevcut tatların yanında artık mevsimlik lezzetler ve hatta bölgesel lezzetler de sunmaktadır. Toplam 25 lezzet aromasını
@@ -190,7 +225,7 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
+function rastgeleTatlar(/*kod buraya*/) {
   /*kod buraya*/
 }
 
@@ -234,7 +269,7 @@ function rastgeleTatlar(/*kod buraya*/){
 
 
 /* Lütfen bu satırın altındaki hiçbir şeyi değiştirmeyin */
-function sa(){
+function sa() {
   console.log('Calışıyor');
   return 'as';
 }
